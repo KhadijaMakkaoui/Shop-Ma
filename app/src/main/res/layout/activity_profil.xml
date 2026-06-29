@@ -4,34 +4,63 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background">
+
     <fragment
-        android:id="@+id/fragHeaderProf"
-        android:name="com.example.shopma.fragments.HeaderFragment"
+        android:id="@+id/headerFragmentProfil"
+        android:name="com.example.shopma.HeaderFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:gravity="center_vertical"
-        android:background="@color/white">
-        <ImageView android:id="@+id/ivAvatar" android:layout_width="70dp" android:layout_height="70dp" android:src="@android:drawable/ic_menu_camera" android:background="#E0E0E0"/>
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginStart="16dp">
-            <TextView android:id="@+id/tvUserEmail" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="16sp" android:textStyle="bold" android:textColor="@color/black"/>
-            <Button android:id="@+id/btnCapture" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Changer Photo" android:textSize="12sp" android:layout_marginTop="4dp"/>
-        </LinearLayout>
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp">
+
+        <ImageView
+            android:id="@+id/ivAvatar"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@android:drawable/sym_def_app_icon"
+            android:background="@android:color/darker_gray"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="12dp"
+            android:contentDescription="Photo de profil" />
+
+        <Button
+            android:id="@+id/btnPrendrePhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Changer de photo"
+            android:backgroundTint="@color/primaryColor"
+            android:layout_marginBottom="24dp"/>
+
+        <TextView
+            android:id="@+id/tvNomUtilisateur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nom d'utilisateur"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="32dp"/>
+
+        <Button
+            android:id="@+id/btnHistorique"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="VOIR MON HISTORIQUE DE COMMANDES"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#333333"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btnDeconnexion"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="SE DÉCONNECTER"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#B71C1C" />
     </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Historique de commandes"
-        android:padding="16dp"
-        android:textSize="16sp"
-        android:textStyle="bold"/>
-    <ListView
-        android:id="@+id/lvCommandes"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp"/>
 </LinearLayout>

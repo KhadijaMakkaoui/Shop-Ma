@@ -5,14 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.example.shopma.models.CartItem;
-import com.example.shopma.models.Commande;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "ShopMa.db";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2; // Version augmentée pour la mise à jour de la clé _id
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -20,8 +16,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE panier (id INTEGER PRIMARY KEY AUTOINCREMENT, product_id INTEGER, title TEXT, price REAL, quantity INTEGER)");
-        db.execSQL("CREATE TABLE commandes (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, nb_articles INTEGER, montant_total REAL, statut TEXT)");
+        // Table Panier (Utilisation impérative de _id pour le CursorAdapter)
+        String createPanier = "CREATE TABLE panier (" +
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "product_id INTEGER, " +
+                "title TEXT, " +
+                "price REAL, " +
+                "quantity INTEGER)";
+        db.execSQL(createPanier);
+
+        // Table Commandes
+        String createCommandes = "CREATE TABLE commandes (" +
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "date TEXT, " +
+                "nb_articles INTEGER, " +
+                "montant_total REAL, " +
+                "statut TEXT)";
+        db.execSQL(createCommandes);
     }
 
     @Override
@@ -31,66 +42,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void ajouterAuPanier(int prodId, String title, double price, int qty) {
+    // --- MÉTHODES DU PANIER ---
+
+    public boolean ajouterAuPanier(int productId, String title, double price, int quantity) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("product_id", prodId);
-        cv.put("title", title);
-        cv.put("price", price);
-        cv.put("quantity", qty);
-        db.insert("panier", null, cv);
+        ContentValues values = new ContentValues();
+        values.put("product_id", productId);
+        values.put("title", title);
+        values.put("price", price);
+        values.put("quantity", quantity);
+
+        long result = db.insert("panier", null, values);
+        return result != -1;
     }
 
-    public List<CartItem> getItemsPanier() {
-        List<CartItem> list = new ArrayList<>();
+    public Cursor getPanierItems() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM panier", null);
-        if (c.moveToFirst()) {
-            do {
-                list.add(new CartItem(c.getInt(0), c.getInt(1), c.getString(2), c.getDouble(3), c.getInt(4)));
-            } while (c.moveToNext());
-        }
-        c.close();
-        return list;
-    }
-
-    public void modifierQuantite(int id, int qty) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("quantity", qty);
-        db.update("panier", cv, "id=?", new String[]{String.valueOf(id)});
-    }
-
-    public void supprimerItem(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("panier", "id=?", new String[]{String.valueOf(id)});
+        return db.rawQuery("SELECT * FROM panier", null);
     }
 
     public void viderPanier() {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("panier", null, null);
+        db.execSQL("DELETE FROM panier");
     }
 
-    public void enregistrerCommande(String date, int nbArt, double total) {
+    // --- MÉTHODES DES COMMANDES ---
+
+    public boolean ajouterCommande(String date, int nbArticles, double total, String statut) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("date", date);
-        cv.put("nb_articles", nbArt);
-        cv.put("montant_total", total);
-        cv.put("statut", "En cours de livraison");
-        db.insert("commandes", null, cv);
+        ContentValues values = new ContentValues();
+        values.put("date", date);
+        values.put("nb_articles", nbArticles);
+        values.put("montant_total", total);
+        values.put("statut", statut);
+
+        long result = db.insert("commandes", null, values);
+        return result != -1;
     }
 
-    public List<Commande> getHistoriqueCommandes() {
-        List<Commande> list = new ArrayList<>();
+    public Cursor getCommandes() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM commandes ORDER BY id DESC", null);
-        if (c.moveToFirst()) {
-            do {
-                list.add(new Commande(c.getInt(0), c.getString(1), c.getInt(2), c.getDouble(3), c.getString(4)));
-            } while (c.moveToNext());
-        }
-        c.close();
-        return list;
+        return db.rawQuery("SELECT * FROM commandes ORDER BY _id DESC", null);
     }
 }
