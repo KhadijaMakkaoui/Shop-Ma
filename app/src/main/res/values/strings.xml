@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShopMa</string>
+    <string name="login_title">ShopMa</string>
+    <string name="login_subtitle">Votre marketplace marocaine</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Mot de passe</string>
+    <string name="remember_me">Se rappeler de moi</string>
+    <string name="btn_login">Se connecter</string>
+    <string name="error_empty">Ce champ est requis</string>
+    <string name="error_password">Minimum 6 caractères</string>
+</resources>
