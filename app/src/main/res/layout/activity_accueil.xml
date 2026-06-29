@@ -3,13 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background">
+    android:background="#F5F5F5"> <androidx.fragment.app.FragmentContainerView
+    android:id="@+id/headerFrag"
+    android:name="com.example.shopma.fragments.HeaderFragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
 
-    <fragment
-        android:id="@+id/headerFrag"
-        android:name="com.example.shopma.fragments.HeaderFragment"
+    <TextView
+        android:id="@+id/tvWelcome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="Bienvenue sur ShopMa Marketplace"
+        android:textColor="#E65100"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:background="#FFF3E0"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,13 +28,188 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="2"
-            android:padding="@dimen/padding_standard">
+            android:padding="12dp">
 
-            <Button android:id="@+id/btnAll" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:text="Tous les Produits" android:layout_margin="8dp" android:backgroundTint="@color/primaryColor"/>
-            <Button android:id="@+id/btnElec" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:text="Electronics" android:layout_margin="8dp" android:backgroundTint="@color/primaryColor"/>
-            <Button android:id="@+id/btnJewel" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:text="Jewelery" android:layout_margin="8dp" android:backgroundTint="@color/primaryColor"/>
-            <Button android:id="@+id/btnMen" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:text="Men's clothing" android:layout_margin="8dp" android:backgroundTint="@color/primaryColor"/>
-            <Button android:id="@+id/btnWomen" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:text="Women's clothing" android:layout_margin="8dp" android:backgroundTint="@color/primaryColor"/>
+            <LinearLayout
+                android:id="@+id/btnAll"
+                android:layout_width="0dp"
+                android:layout_height="135dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@android:drawable/ic_menu_search"
+                    android:tint="#E65100"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tous les Produits"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnElec"
+                android:layout_width="0dp"
+                android:layout_height="135dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@android:drawable/ic_menu_compass"
+                    android:tint="#E65100"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Électronique"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnJewel"
+                android:layout_width="0dp"
+                android:layout_height="135dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@android:drawable/btn_star_big_on"
+                    android:tint="#E65100"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bijoux"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnMen"
+                android:layout_width="0dp"
+                android:layout_height="135dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@android:drawable/ic_menu_myplaces"
+                    android:tint="#E65100"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mode Homme"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnWomen"
+                android:layout_width="0dp"
+                android:layout_height="135dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@android:drawable/ic_menu_gallery"
+                    android:tint="#E65100"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mode Femme"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnMaps"
+                android:layout_width="0dp"
+                android:layout_height="135dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@android:drawable/ic_dialog_map"
+                    android:tint="#E65100"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Points de Retrait"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
         </GridLayout>
     </ScrollView>
 </LinearLayout>

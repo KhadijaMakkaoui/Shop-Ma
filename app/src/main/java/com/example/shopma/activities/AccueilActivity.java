@@ -1,28 +1,62 @@
 package com.example.shopma.activities;
 
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.shopma.R;
 
 public class AccueilActivity extends AppCompatActivity {
+
+    private LinearLayout btnAll, btnElec, btnJewel, btnMen, btnWomen, btnMaps;
+    private TextView tvWelcome;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
 
-        findViewById(R.id.btnAll).setOnClickListener(v -> naviguer("all"));
-        findViewById(R.id.btnElec).setOnClickListener(v -> naviguer("electronics"));
-        findViewById(R.id.btnJewel).setOnClickListener(v -> naviguer("jewelery"));
-        findViewById(R.id.btnMen).setOnClickListener(v -> naviguer("men's clothing"));
-        findViewById(R.id.btnWomen).setOnClickListener(v -> naviguer("women's clothing"));
-    }
+        tvWelcome = findViewById(R.id.tvWelcome);
+        btnAll = findViewById(R.id.btnAll);
+        btnElec = findViewById(R.id.btnElec);
+        btnJewel = findViewById(R.id.btnJewel);
+        btnMen = findViewById(R.id.btnMen);
+        btnWomen = findViewById(R.id.btnWomen);
+        btnMaps = findViewById(R.id.btnMaps);
 
-    private void naviguer(String cat) {
-        Intent i = new Intent(this, CatalogueActivity.class);
-        i.putExtra("CATEGORIE", cat);
-        startActivity(i);
+        btnAll.setOnClickListener(v -> {
+            Intent intent = new Intent(AccueilActivity.this, CatalogueActivity.class);
+            startActivity(intent);
+        });
+
+        btnElec.setOnClickListener(v -> {
+            Intent intent = new Intent(AccueilActivity.this, CatalogueActivity.class);
+            intent.putExtra("CATEGORY", "electronics");
+            startActivity(intent);
+        });
+
+        btnJewel.setOnClickListener(v -> {
+            Intent intent = new Intent(AccueilActivity.this, CatalogueActivity.class);
+            intent.putExtra("CATEGORY", "jewelery");
+            startActivity(intent);
+        });
+
+        btnMen.setOnClickListener(v -> {
+            Intent intent = new Intent(AccueilActivity.this, CatalogueActivity.class);
+            intent.putExtra("CATEGORY", "men's clothing");
+            startActivity(intent);
+        });
+
+        btnWomen.setOnClickListener(v -> {
+            Intent intent = new Intent(AccueilActivity.this, CatalogueActivity.class);
+            intent.putExtra("CATEGORY", "women's clothing");
+            startActivity(intent);
+        });
+
+        btnMaps.setOnClickListener(v -> {
+            Intent intent = new Intent(AccueilActivity.this, MapsActivity.class);
+            startActivity(intent);
+        });
     }
 }
