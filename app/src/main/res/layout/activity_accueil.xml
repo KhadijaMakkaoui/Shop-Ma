@@ -4,25 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background">
+
     <fragment
-        android:id="@+id/fragHeader"
+        android:id="@+id/headerFrag"
         android:name="com.example.shopma.fragments.HeaderFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="2"
-            android:padding="12dp">
-            <Button android:id="@+id/btnCatElec" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:layout_margin="6dp" android:text="Électronique" android:backgroundTint="@color/white" android:textColor="@color/black"/>
-            <Button android:id="@+id/btnCatBij" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:layout_margin="6dp" android:text="Bijoux" android:backgroundTint="@color/white" android:textColor="@color/black"/>
-            <Button android:id="@+id/btnCatHomme" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:layout_margin="6dp" android:text="Mode Homme" android:backgroundTint="@color/white" android:textColor="@color/black"/>
-            <Button android:id="@+id/btnCatFemme" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:layout_margin="6dp" android:text="Mode Femme" android:backgroundTint="@color/white" android:textColor="@color/black"/>
-            <Button android:id="@+id/btnCatAll" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:layout_margin="6dp" android:text="Tout Parcourir" android:backgroundTint="@color/white" android:textColor="@color/black"/>
-            <Button android:id="@+id/btnMap" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:layout_margin="6dp" android:text="Points de Retrait" android:backgroundTint="@color/white" android:textColor="@color/black"/>
+            android:padding="@dimen/padding_standard">
+
+            <Button android:id="@+id/btnAll" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:text="Tous les Produits" android:layout_margin="8dp" android:backgroundTint="@color/primaryColor"/>
+            <Button android:id="@+id/btnElec" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:text="Electronics" android:layout_margin="8dp" android:backgroundTint="@color/primaryColor"/>
+            <Button android:id="@+id/btnJewel" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:text="Jewelery" android:layout_margin="8dp" android:backgroundTint="@color/primaryColor"/>
+            <Button android:id="@+id/btnMen" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:text="Men's clothing" android:layout_margin="8dp" android:backgroundTint="@color/primaryColor"/>
+            <Button android:id="@+id/btnWomen" android:layout_width="0dp" android:layout_height="120dp" android:layout_columnWeight="1" android:text="Women's clothing" android:layout_margin="8dp" android:backgroundTint="@color/primaryColor"/>
         </GridLayout>
     </ScrollView>
 </LinearLayout>

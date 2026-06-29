@@ -3,64 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background">
+    android:gravity="center_horizontal">
 
-    <fragment
-        android:id="@+id/headerFragmentProfil"
-        android:name="com.example.shopma.HeaderFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="24dp">
-
-        <ImageView
-            android:id="@+id/ivAvatar"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@android:drawable/sym_def_app_icon"
-            android:background="@android:color/darker_gray"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="12dp"
-            android:contentDescription="Photo de profil" />
-
-        <Button
-            android:id="@+id/btnPrendrePhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Changer de photo"
-            android:backgroundTint="@color/primaryColor"
-            android:layout_marginBottom="24dp"/>
-
-        <TextView
-            android:id="@+id/tvNomUtilisateur"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nom d'utilisateur"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#333333"
-            android:layout_marginBottom="32dp"/>
-
-        <Button
-            android:id="@+id/btnHistorique"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="VOIR MON HISTORIQUE DE COMMANDES"
-            android:textColor="@android:color/white"
-            android:backgroundTint="#333333"
-            android:layout_marginBottom="12dp"/>
-
-        <Button
-            android:id="@+id/btnDeconnexion"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="SE DÉCONNECTER"
-            android:textColor="@android:color/white"
-            android:backgroundTint="#B71C1C" />
-    </LinearLayout>
+    <fragment android:id="@+id/headerFragProf"
+        android:name="com.example.shopma.fragments.HeaderFragment"
+        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <ImageView android:id="@+id/ivAvatar" android:layout_width="100dp" android:layout_height="100dp" android:src="@android:drawable/ic_menu_report_image" android:layout_marginTop="32dp"/>
+    <Button android:id="@+id/btnCam" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Prendre Photo" android:layout_marginTop="16dp"/>
+    <Button android:id="@+id/btnHist" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Historique Commandes" android:layout_marginTop="16dp"/>
 </LinearLayout>

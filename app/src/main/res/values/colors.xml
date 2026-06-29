@@ -2,6 +2,8 @@
 <resources>
     <color name="primaryColor">#E65100</color>
     <color name="primaryDark">#B33900</color>
+    <color name="primaryDarkColor">#B33900</color>
+    <color name="accentColor">#FF6F00</color>
     <color name="white">#FFFFFF</color>
     <color name="background">#F5F5F5</color>
     <color name="gray">#757575</color>
