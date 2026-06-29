@@ -5,10 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.example.shopma.models.CartItem;
-import com.example.shopma.models.Commande;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "ShopMa.db";
@@ -20,8 +16,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE panier (id INTEGER PRIMARY KEY AUTOINCREMENT, product_id INTEGER, title TEXT, price REAL, quantity INTEGER)");
-        db.execSQL("CREATE TABLE commandes (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, nb_articles INTEGER, montant_total REAL, statut TEXT)");
+        db.execSQL("CREATE TABLE panier (_id INTEGER PRIMARY KEY AUTOINCREMENT, product_id INTEGER, title TEXT, price REAL, quantity INTEGER)");
+        db.execSQL("CREATE TABLE commandes (_id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, nb_articles INTEGER, montant_total REAL, statut TEXT)");
     }
 
     @Override
@@ -31,66 +27,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void ajouterAuPanier(int prodId, String title, double price, int qty) {
+    public boolean ajouterAuPanier(int productId, String title, double price, int qty) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("product_id", prodId);
-        cv.put("title", title);
-        cv.put("price", price);
-        cv.put("quantity", qty);
-        db.insert("panier", null, cv);
+        ContentValues v = new ContentValues();
+        v.put("product_id", productId);
+        v.put("title", title);
+        v.put("price", price);
+        v.put("quantity", qty);
+        return db.insert("panier", null, v) != -1;
     }
 
-    public List<CartItem> getItemsPanier() {
-        List<CartItem> list = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM panier", null);
-        if (c.moveToFirst()) {
-            do {
-                list.add(new CartItem(c.getInt(0), c.getInt(1), c.getString(2), c.getDouble(3), c.getInt(4)));
-            } while (c.moveToNext());
-        }
-        c.close();
-        return list;
-    }
-
-    public void modifierQuantite(int id, int qty) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("quantity", qty);
-        db.update("panier", cv, "id=?", new String[]{String.valueOf(id)});
-    }
-
-    public void supprimerItem(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("panier", "id=?", new String[]{String.valueOf(id)});
+    public Cursor getPanierItems() {
+        return this.getReadableDatabase().rawQuery("SELECT * FROM panier", null);
     }
 
     public void viderPanier() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("panier", null, null);
+        this.getWritableDatabase().execSQL("DELETE FROM panier");
     }
 
-    public void enregistrerCommande(String date, int nbArt, double total) {
+    public boolean ajouterCommande(String date, int nb, double tot, String stat) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("date", date);
-        cv.put("nb_articles", nbArt);
-        cv.put("montant_total", total);
-        cv.put("statut", "En cours de livraison");
-        db.insert("commandes", null, cv);
+        ContentValues v = new ContentValues();
+        v.put("date", date);
+        v.put("nb_articles", nb);
+        v.put("montant_total", tot);
+        v.put("statut", stat);
+        return db.insert("commandes", null, v) != -1;
     }
 
-    public List<Commande> getHistoriqueCommandes() {
-        List<Commande> list = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM commandes ORDER BY id DESC", null);
-        if (c.moveToFirst()) {
-            do {
-                list.add(new Commande(c.getInt(0), c.getString(1), c.getInt(2), c.getDouble(3), c.getString(4)));
-            } while (c.moveToNext());
-        }
-        c.close();
-        return list;
+    public Cursor getCommandes() {
+        return this.getReadableDatabase().rawQuery("SELECT * FROM commandes ORDER BY _id DESC", null);
     }
 }

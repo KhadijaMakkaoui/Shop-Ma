@@ -1,26 +1,28 @@
 package com.example.shopma.activities;
 
-import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
+import android.content.Intent;
+import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.shopma.R;
 
 public class AccueilActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_accueil);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        findViewById(R.id.btnAll).setOnClickListener(v -> naviguer("all"));
+        findViewById(R.id.btnElec).setOnClickListener(v -> naviguer("electronics"));
+        findViewById(R.id.btnJewel).setOnClickListener(v -> naviguer("jewelery"));
+        findViewById(R.id.btnMen).setOnClickListener(v -> naviguer("men's clothing"));
+        findViewById(R.id.btnWomen).setOnClickListener(v -> naviguer("women's clothing"));
+    }
+
+    private void naviguer(String cat) {
+        Intent i = new Intent(this, CatalogueActivity.class);
+        i.putExtra("CATEGORIE", cat);
+        startActivity(i);
     }
 }

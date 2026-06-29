@@ -9,4 +9,13 @@
     <string name="btn_login">Se connecter</string>
     <string name="error_empty">Ce champ est requis</string>
     <string name="error_password">Minimum 6 caractères</string>
+    <string name="pass_hint">Mot de passe</string>
+    <string name="chk_remember">Se souvenir de moi</string>
+    <string name="network_error">Erreur Réseau : API inaccessible</string>
+    <string name="err_invalid_credentials">Identifiants incorrects</string>
+    <string name="txt_added_to_cart">Produit ajouté au panier !</string>
+    <string name="txt_quantity">Quantité :</string>
+    <string name="txt_order_confirmed">Commande enregistrée avec succès !</string>
+    <string name="notif_success">Votre commande a été traitée par notre équipe locale.</string>
+
 </resources>

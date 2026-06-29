@@ -3,35 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background">
-    <fragment
-        android:id="@+id/fragHeaderProf"
+    android:gravity="center_horizontal">
+
+    <fragment android:id="@+id/headerFragProf"
         android:name="com.example.shopma.fragments.HeaderFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:gravity="center_vertical"
-        android:background="@color/white">
-        <ImageView android:id="@+id/ivAvatar" android:layout_width="70dp" android:layout_height="70dp" android:src="@android:drawable/ic_menu_camera" android:background="#E0E0E0"/>
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginStart="16dp">
-            <TextView android:id="@+id/tvUserEmail" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="16sp" android:textStyle="bold" android:textColor="@color/black"/>
-            <Button android:id="@+id/btnCapture" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Changer Photo" android:textSize="12sp" android:layout_marginTop="4dp"/>
-        </LinearLayout>
-    </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Historique de commandes"
-        android:padding="16dp"
-        android:textSize="16sp"
-        android:textStyle="bold"/>
-    <ListView
-        android:id="@+id/lvCommandes"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp"/>
+        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <ImageView android:id="@+id/ivAvatar" android:layout_width="100dp" android:layout_height="100dp" android:src="@android:drawable/ic_menu_report_image" android:layout_marginTop="32dp"/>
+    <Button android:id="@+id/btnCam" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Prendre Photo" android:layout_marginTop="16dp"/>
+    <Button android:id="@+id/btnHist" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Historique Commandes" android:layout_marginTop="16dp"/>
 </LinearLayout>

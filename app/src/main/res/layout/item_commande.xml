@@ -3,21 +3,46 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="12dp"
-    android:layout_marginBottom="6dp"
-    android:background="@color/white">
+    android:padding="16dp"
+    android:background="@android:color/white"
+    android:layout_marginBottom="8dp">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView android:id="@+id/tvCmdId" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textColor="@color/black"/>
-        <TextView android:id="@+id/tvCmdDate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:textColor="@color/gray"/>
+
+        <TextView
+            android:id="@+id/tvOrderDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date: 23/04/2026"
+            android:textStyle="bold"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/tvOrderStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="En cours"
+            android:textColor="@color/primaryColor"
+            android:textStyle="bold" />
     </RelativeLayout>
-    <TextView android:id="@+id/tvCmdArticles" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:textColor="@color/black"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/tvOrderDetails"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp">
-        <TextView android:id="@+id/tvCmdTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/primaryColor" android:textStyle="bold"/>
-        <TextView android:id="@+id/tvCmdStatus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:textColor="#2E7D32" android:textStyle="bold"/>
-    </RelativeLayout>
+        android:layout_marginTop="6dp"
+        android:text="3 articles payés"
+        android:textColor="#666666" />
+
+    <TextView
+        android:id="@+id/tvOrderTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Total: 450.00 DH"
+        android:textStyle="bold"
+        android:textColor="#333333" />
 </LinearLayout>
