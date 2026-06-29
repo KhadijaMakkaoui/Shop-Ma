@@ -31,7 +31,8 @@ public class CatalogueActivity extends AppCompatActivity {
         String cat = getIntent().getStringExtra("CATEGORIE");
 
         ApiService api = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-        Call<List<Product>> call = cat.equals("all") ? api.getAllProducts() : api.getProductsByCategory(cat);
+        // Safely check for "all" or null category
+        Call<List<Product>> call = ("all".equals(cat) || cat == null) ? api.getAllProducts() : api.getProductsByCategory(cat);
 
         call.enqueue(new Callback<List<Product>>() {
             @Override
