@@ -25,25 +25,28 @@
 
         <ImageView
             android:id="@+id/btnHeaderMaps"
-            android:layout_width="32dp"
+            android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_marginEnd="16dp"
-            android:src="@android:drawable/ic_menu_mylocation"
-            android:contentDescription="Points Retrait" />
+            android:contentDescription="Points Retrait"
+            android:src="@drawable/outline_location_on_24"
+            android:tint="@color/cardview_light_background"/>
 
         <ImageView
             android:id="@+id/btnHeaderCart"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="16dp"
-            android:src="@android:drawable/ic_input_add"
-            android:contentDescription="Panier" />
+            android:src="@drawable/outline_add_shopping_cart_24"
+            android:contentDescription="Panier"
+            android:tint="@color/cardview_light_background"/>
 
         <ImageView
             android:id="@+id/btnHeaderProfile"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@android:drawable/ic_menu_compass"
-            android:contentDescription="Profil" />
+            android:src="@drawable/men"
+            android:contentDescription="Profil"
+            android:tint="@color/cardview_light_background"/>
     </LinearLayout>
 </RelativeLayout>

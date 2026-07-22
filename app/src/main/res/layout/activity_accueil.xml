@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F5F5"> <androidx.fragment.app.FragmentContainerView
-    android:id="@+id/headerFrag"
-    android:name="com.example.shopma.fragments.HeaderFragment"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
+    android:background="@color/accentColor">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/headerFrag"
+        android:name="com.example.shopma.fragments.HeaderFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tvWelcome"
@@ -18,7 +21,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:padding="16dp"
-        android:background="#FFF3E0"/>
+        android:background="@color/background" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -48,7 +51,7 @@
                     android:layout_height="44dp"
                     android:layout_marginBottom="8dp"
                     android:src="@android:drawable/ic_menu_search"
-                    android:tint="#E65100"/>
+                    android:tint="@color/accentColor" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -57,7 +60,7 @@
                     android:textStyle="bold"
                     android:textColor="#333333"
                     android:textSize="14sp"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -77,8 +80,8 @@
                     android:layout_width="44dp"
                     android:layout_height="44dp"
                     android:layout_marginBottom="8dp"
-                    android:src="@android:drawable/ic_menu_compass"
-                    android:tint="#E65100"/>
+                    android:src="@drawable/outline_devices_24"
+                    android:tint="@color/accentColor" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -87,7 +90,7 @@
                     android:textStyle="bold"
                     android:textColor="#333333"
                     android:textSize="14sp"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -107,8 +110,8 @@
                     android:layout_width="44dp"
                     android:layout_height="44dp"
                     android:layout_marginBottom="8dp"
-                    android:src="@android:drawable/btn_star_big_on"
-                    android:tint="#E65100"/>
+                    android:src="@drawable/baseline_diamond_24"
+                    android:tint="@color/accentColor" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -117,7 +120,7 @@
                     android:textStyle="bold"
                     android:textColor="#333333"
                     android:textSize="14sp"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -137,8 +140,8 @@
                     android:layout_width="44dp"
                     android:layout_height="44dp"
                     android:layout_marginBottom="8dp"
-                    android:src="@android:drawable/ic_menu_myplaces"
-                    android:tint="#E65100"/>
+                    android:src="@drawable/men"
+                    android:tint="@color/accentColor" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -147,7 +150,7 @@
                     android:textStyle="bold"
                     android:textColor="#333333"
                     android:textSize="14sp"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -167,8 +170,8 @@
                     android:layout_width="44dp"
                     android:layout_height="44dp"
                     android:layout_marginBottom="8dp"
-                    android:src="@android:drawable/ic_menu_gallery"
-                    android:tint="#E65100"/>
+                    android:src="@drawable/women"
+                    android:tint="@color/accentColor" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -177,7 +180,7 @@
                     android:textStyle="bold"
                     android:textColor="#333333"
                     android:textSize="14sp"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -198,7 +201,7 @@
                     android:layout_height="44dp"
                     android:layout_marginBottom="8dp"
                     android:src="@android:drawable/ic_dialog_map"
-                    android:tint="#E65100"/>
+                    app:tint="@color/accentColor" />
 
                 <TextView
                     android:layout_width="wrap_content"
