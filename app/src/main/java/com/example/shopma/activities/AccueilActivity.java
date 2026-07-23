@@ -25,11 +25,13 @@ public class AccueilActivity extends AppCompatActivity {
         btnWomen = findViewById(R.id.btnWomen);
         btnMaps = findViewById(R.id.btnMaps);
 
+        // 1. "Tous les produits" -> Ouvre la nouvelle page avec la barre de recherche
         btnAll.setOnClickListener(v -> {
-            Intent intent = new Intent(AccueilActivity.this, CatalogueActivity.class);
+            Intent intent = new Intent(AccueilActivity.this, RechercheActivity.class);
             startActivity(intent);
         });
 
+        // 2. Les catégories -> Ouvrent le Catalogue filtré
         btnElec.setOnClickListener(v -> {
             Intent intent = new Intent(AccueilActivity.this, CatalogueActivity.class);
             intent.putExtra("CATEGORY", "electronics");
@@ -54,6 +56,7 @@ public class AccueilActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // 3. Points de retrait -> Ouvre la carte
         btnMaps.setOnClickListener(v -> {
             Intent intent = new Intent(AccueilActivity.this, MapsActivity.class);
             startActivity(intent);

@@ -1,9 +1,11 @@
 package com.example.shopma.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.shopma.R;
 import com.example.shopma.adapters.ProductAdapter;
@@ -29,16 +31,17 @@ public class CatalogueActivity extends AppCompatActivity {
         lv = findViewById(R.id.lvProducts);
         db = new DatabaseHelper(this);
 
-        // 1. Récupération flexible de la catégorie (gère "CATEGORY" ou "CATEGORIE")
+        // 1. Récupération flexible de la catégorie
         String categorieChoisie = getIntent().getStringExtra("CATEGORY");
         if (categorieChoisie == null) {
             categorieChoisie = getIntent().getStringExtra("CATEGORIE");
         }
 
-        // 2. Aiguillage vers la bonne méthode
+        // 2. Chargement des produits selon la catégorie
         if (categorieChoisie != null && !categorieChoisie.isEmpty() && !"all".equalsIgnoreCase(categorieChoisie)) {
             chargerProduitsParCategorie(categorieChoisie);
         } else {
+            // Par défaut, charger tous les produits
             chargerTousLesProduits();
         }
     }
