@@ -58,7 +58,7 @@ public class HeaderFragment extends Fragment {
     public void mettreAJourBadgePanier() {
         if (getContext() != null && tvCartBadge != null) {
             DatabaseHelper db = new DatabaseHelper(getContext());
-            int nbArticles = db.getQuantiteTotalePanier();
+            int nbArticles = db.getPanierItems().getCount();
 
             if (nbArticles > 0) {
                 tvCartBadge.setVisibility(View.VISIBLE);

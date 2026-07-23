@@ -21,7 +21,7 @@ public class CommandesActivity extends AppCompatActivity {
 
         ListView lv = findViewById(R.id.lvProducts);
         DatabaseHelper db = new DatabaseHelper(this);
-        Cursor c = db.getCommandes();
+        Cursor c = db.getPanierItems();
 
         lv.setAdapter(new CursorAdapter(this, c, 0) {
             @Override

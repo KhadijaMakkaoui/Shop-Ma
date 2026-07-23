@@ -81,9 +81,8 @@ public class AccueilActivity extends AppCompatActivity {
 
     private void updateCartBannerCount() {
         if (tvCartCountBanner != null) {
-            int total = db.getQuantiteTotalePanier();
+            int total = db.getPanierItems().getCount();
 
-            // Gestion propre du singulier / pluriel
             if (total <= 1) {
                 tvCartCountBanner.setText(total + " article dans le panier");
             } else {
