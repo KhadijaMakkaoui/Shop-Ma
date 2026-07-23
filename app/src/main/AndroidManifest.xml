@@ -21,6 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".activities.CommandesActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.RechercheActivity"
             android:exported="false" />
 
@@ -43,9 +46,6 @@
             android:name="com.google.android.geo.API_KEY_LOCAL_LEGACY_LEGACY"
             android:value="AIzaSyCFJvPFgBbXruve0cJwipWqgLTMDfl2z9o" />
 
-        <activity
-            android:name=".activities.CommandesActivity"
-            android:exported="false" />
         <activity
             android:name=".activities.MapsActivity"
             android:exported="false" />

@@ -17,7 +17,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Table 6.1 : panier
         String createTablePanier = "CREATE TABLE panier (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "product_id INTEGER, " +
@@ -44,17 +43,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    /**
-     * Ajoute un produit au panier ou incrémente sa quantité s'il existe déjà
-     */
+
     public void ajouterAuPanier(int productId, String title, double price, int quantity) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        // Vérification de l'existence du produit dans le panier
         Cursor cursor = db.rawQuery("SELECT quantity FROM panier WHERE product_id = ?", new String[]{String.valueOf(productId)});
 
         if (cursor != null && cursor.moveToFirst()) {
-            // Produit existant -> Mise à jour de la quantité
             int currentQty = cursor.getInt(cursor.getColumnIndexOrThrow("quantity"));
             ContentValues values = new ContentValues();
             values.put("quantity", currentQty + quantity);
@@ -62,7 +57,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.update("panier", values, "product_id = ?", new String[]{String.valueOf(productId)});
             cursor.close();
         } else {
-            // Nouveau produit -> Insertion
             if (cursor != null) cursor.close();
 
             ContentValues values = new ContentValues();
@@ -75,26 +69,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    /**
-     * Récupère tous les éléments du panier
-     * Note: Alias 'id AS _id' indispensable pour le CursorAdapter d'Android
-     */
+
     public Cursor getPanierItems() {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT id AS _id, product_id, title, price, quantity FROM panier", null);
     }
 
-    /**
-     * Vide complètement la table panier
-     */
+
     public void viderPanier() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("panier", null, null);
     }
 
-    /**
-     * Enregistre une nouvelle commande
-     */
+
     public void ajouterCommande(String date, int nbArticles, double montantTotal, String statut) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -104,5 +91,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("statut", statut); // Ex: "en_cours" ou "livree"
 
         db.insert("commandes", null, values);
+    }
+    public Cursor getCommandes() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT id AS _id, date, nb_articles, montant_total, statut FROM commandes ORDER BY id DESC", null);
     }
 }
