@@ -113,6 +113,7 @@ public class CatalogueActivity extends AppCompatActivity {
 
         lvProducts.setOnItemClickListener((parent, view, position, id) -> {
             Product p = produits.get(position);
+            // p.getPrice() contient maintenant le vrai prix en DH (ex: 569.90)
             db.ajouterAuPanier(p.getId(), p.getTitle(), p.getPrice(), 1);
             Toast.makeText(CatalogueActivity.this, p.getTitle() + " ajouté au panier !", Toast.LENGTH_SHORT).show();
         });
@@ -128,7 +129,14 @@ public class CatalogueActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    afficherProduits(response.body());
+                    List<Product> produits = response.body();
+
+                    // 🟢 Conversion USD -> DH pour tous les produits
+                    for (Product p : produits) {
+                        p.setPrice(p.getPrice() * 10.0);
+                    }
+
+                    afficherProduits(produits);
                 } else {
                     Toast.makeText(CatalogueActivity.this, "Erreur serveur : impossible de charger les produits.", Toast.LENGTH_SHORT).show();
                 }
@@ -151,7 +159,14 @@ public class CatalogueActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    afficherProduits(response.body());
+                    List<Product> produits = response.body();
+
+                    // 🟢 Conversion USD -> DH pour les produits filtrés
+                    for (Product p : produits) {
+                        p.setPrice(p.getPrice() * 10.0);
+                    }
+
+                    afficherProduits(produits);
                 } else {
                     Toast.makeText(CatalogueActivity.this, "Erreur lors du filtrage de la catégorie.", Toast.LENGTH_SHORT).show();
                 }

@@ -25,7 +25,8 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         TextView price = v.findViewById(R.id.tvProductPrice);
         ImageView img = v.findViewById(R.id.imgProduct);
         title.setText(prod.getTitle());
-        price.setText(String.format("%.2f DH", prod.getPrice() * 10));
+//        price.setText(String.format("%.2f DH", prod.getPrice() * 10));
+        price.setText(String.format("%.2f DH", prod.getPrice()));
         Picasso.get().load(prod.getImage()).into(img);
 
         return v;
