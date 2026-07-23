@@ -1,11 +1,12 @@
 package com.example.shopma.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.example.shopma.R;
 import com.example.shopma.adapters.ProductAdapter;
@@ -20,7 +21,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CatalogueActivity extends AppCompatActivity {
-    private ListView lv;
+
+    private ListView lvProducts;
+    private EditText etSearchCategory;
+    private Button btnSearch;
+    private TextView tvResultTitle;
+    private Button btnFilterElec, btnFilterJewel, btnFilterMen, btnFilterWomen;
+
     private DatabaseHelper db;
 
     @Override
@@ -28,36 +35,92 @@ public class CatalogueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogue);
 
-        lv = findViewById(R.id.lvProducts);
+        // 1. Initialisation des composants UI
+        lvProducts = findViewById(R.id.lvProducts);
+        etSearchCategory = findViewById(R.id.etSearchCategory);
+        btnSearch = findViewById(R.id.btnSearch);
+        tvResultTitle = findViewById(R.id.tvResultTitle);
+
+        btnFilterElec = findViewById(R.id.btnFilterElec);
+        btnFilterJewel = findViewById(R.id.btnFilterJewel);
+        btnFilterMen = findViewById(R.id.btnFilterMen);
+        btnFilterWomen = findViewById(R.id.btnFilterWomen);
+
         db = new DatabaseHelper(this);
 
-        // 1. Récupération flexible de la catégorie
+        // 2. Gestion de l'Intent venant de AccueilActivity
         String categorieChoisie = getIntent().getStringExtra("CATEGORY");
         if (categorieChoisie == null) {
             categorieChoisie = getIntent().getStringExtra("CATEGORIE");
         }
 
-        // 2. Chargement des produits selon la catégorie
         if (categorieChoisie != null && !categorieChoisie.isEmpty() && !"all".equalsIgnoreCase(categorieChoisie)) {
-            chargerProduitsParCategorie(categorieChoisie);
+            effectuerRecherche(categorieChoisie);
         } else {
-            // Par défaut, charger tous les produits
+            if (tvResultTitle != null) {
+                tvResultTitle.setText("Tous les produits :");
+            }
             chargerTousLesProduits();
+        }
+
+        // 3. Listener sur le bouton OK (Recherche manuelle)
+        if (btnSearch != null) {
+            btnSearch.setOnClickListener(v -> {
+                String req = etSearchCategory.getText().toString().trim();
+                if (req.isEmpty() || "all".equalsIgnoreCase(req)) {
+                    if (tvResultTitle != null) tvResultTitle.setText("Tous les produits :");
+                    chargerTousLesProduits();
+                } else {
+                    effectuerRecherche(req);
+                }
+            });
+        }
+
+        // 4. Listeners sur les boutons de filtres rapides (Chips)
+        if (btnFilterElec != null) {
+            btnFilterElec.setOnClickListener(v -> effectuerRecherche("electronics"));
+        }
+        if (btnFilterJewel != null) {
+            btnFilterJewel.setOnClickListener(v -> effectuerRecherche("jewelery"));
+        }
+        if (btnFilterMen != null) {
+            btnFilterMen.setOnClickListener(v -> effectuerRecherche("men's clothing"));
+        }
+        if (btnFilterWomen != null) {
+            btnFilterWomen.setOnClickListener(v -> effectuerRecherche("women's clothing"));
         }
     }
 
-    // Méthode utilitaire pour lier les produits au ListView et gérer les clics
+    /**
+     * Effectue la recherche par catégorie et met à jour les champs de texte
+     */
+    private void effectuerRecherche(String categorie) {
+        if (etSearchCategory != null) {
+            etSearchCategory.setText(categorie);
+        }
+        if (tvResultTitle != null) {
+            tvResultTitle.setText("Résultats pour \"" + categorie + "\" :");
+        }
+        chargerProduitsParCategorie(categorie);
+    }
+
+    /**
+     * Affiche la liste des produits et configure le clic pour l'ajout au panier
+     */
     private void afficherProduits(List<Product> produits) {
         ProductAdapter adapter = new ProductAdapter(CatalogueActivity.this, produits);
-        lv.setAdapter(adapter);
+        lvProducts.setAdapter(adapter);
 
-        lv.setOnItemClickListener((parent, view, position, id) -> {
+        lvProducts.setOnItemClickListener((parent, view, position, id) -> {
             Product p = produits.get(position);
             db.ajouterAuPanier(p.getId(), p.getTitle(), p.getPrice(), 1);
-            Toast.makeText(CatalogueActivity.this, "Ajouté au panier !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CatalogueActivity.this, p.getTitle() + " ajouté au panier !", Toast.LENGTH_SHORT).show();
         });
     }
 
+    /**
+     * Appel API Retrofit : Charger tous les produits
+     */
     private void chargerTousLesProduits() {
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
@@ -78,6 +141,9 @@ public class CatalogueActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Appel API Retrofit : Charger les produits par catégorie
+     */
     private void chargerProduitsParCategorie(String categorie) {
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 

@@ -18,13 +18,12 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 
     @Override
     public View getView(int pos, View v, ViewGroup p) {
-        if (v == null) v = LayoutInflater.from(getContext()).inflate(R.layout.item_produit, p, false);
+        if (v == null) v = LayoutInflater.from(getContext()).inflate(R.layout.item_product, p, false);
         Product prod = getItem(pos);
 
         TextView title = v.findViewById(R.id.tvProductTitle);
         TextView price = v.findViewById(R.id.tvProductPrice);
-        ImageView img = v.findViewById(R.id.ivProductImage);
-
+        ImageView img = v.findViewById(R.id.imgProduct);
         title.setText(prod.getTitle());
         price.setText(String.format("%.2f DH", prod.getPrice() * 10));
         Picasso.get().load(prod.getImage()).into(img);
