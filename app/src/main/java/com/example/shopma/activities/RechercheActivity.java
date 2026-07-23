@@ -37,10 +37,8 @@ public class RechercheActivity extends AppCompatActivity {
         searchView = findViewById(R.id.searchViewProduct);
         db = new DatabaseHelper(this);
 
-        // 1. Chargement des données au lancement
         chargerTousLesProduits();
 
-        // 2. Écouteur sur la barre de recherche
         setupSearchView();
     }
 
@@ -60,7 +58,6 @@ public class RechercheActivity extends AppCompatActivity {
         });
     }
 
-    // Filtrage instantané du produit en fonction du texte saisi
     private void filtrerProduits(String texte) {
         if (listeProduitsComplete == null) return;
 
@@ -76,7 +73,6 @@ public class RechercheActivity extends AppCompatActivity {
         afficherProduits(listeFiltree);
     }
 
-    // Affichage dans le ListView et gestion de l'ajout au panier
     private void afficherProduits(List<Product> produits) {
         ProductAdapter adapter = new ProductAdapter(
                 RechercheActivity.this, produits);
@@ -85,11 +81,10 @@ public class RechercheActivity extends AppCompatActivity {
         lv.setOnItemClickListener((parent, view, position, id) -> {
             Product p = produits.get(position);
             db.ajouterAuPanier(p.getId(), p.getTitle(), p.getPrice(), 1);
-            Toast.makeText(RechercheActivity.this, "Ajouté au panier !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RechercheActivity.this, "Ajouté au panier avec succès !", Toast.LENGTH_SHORT).show();
         });
     }
 
-    // Votre méthode adaptée pour enregistrer les données avant l'affichage
     private void chargerTousLesProduits() {
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
@@ -97,10 +92,8 @@ public class RechercheActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // Sauvegarde dans la variable globale pour la recherche
                     listeProduitsComplete = response.body();
 
-                    // Affichage des produits
                     afficherProduits(listeProduitsComplete);
                 } else {
                     Toast.makeText(RechercheActivity.this, "Erreur serveur : impossible de charger les produits.", Toast.LENGTH_SHORT).show();

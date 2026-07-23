@@ -1,6 +1,7 @@
 package com.example.shopma.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,14 +25,18 @@ public class AccueilActivity extends AppCompatActivity {
         btnMen = findViewById(R.id.btnMen);
         btnWomen = findViewById(R.id.btnWomen);
         btnMaps = findViewById(R.id.btnMaps);
+        TextView tvWelcome = findViewById(R.id.tvWelcome);
 
-        // 1. "Tous les produits" -> Ouvre la nouvelle page avec la barre de recherche
+        SharedPreferences pref = getSharedPreferences("UserSession", MODE_PRIVATE);
+        String nomUtilisateur = pref.getString("USER_NAME", "Khadija");
+
+        tvWelcome.setText("Bonjour, " + nomUtilisateur);
+
         btnAll.setOnClickListener(v -> {
             Intent intent = new Intent(AccueilActivity.this, RechercheActivity.class);
             startActivity(intent);
         });
 
-        // 2. Les catégories -> Ouvrent le Catalogue filtré
         btnElec.setOnClickListener(v -> {
             Intent intent = new Intent(AccueilActivity.this, CatalogueActivity.class);
             intent.putExtra("CATEGORY", "electronics");
@@ -56,7 +61,6 @@ public class AccueilActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 3. Points de retrait -> Ouvre la carte
         btnMaps.setOnClickListener(v -> {
             Intent intent = new Intent(AccueilActivity.this, MapsActivity.class);
             startActivity(intent);

@@ -4,14 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- En-tête / Header Fragment -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/headerFrag"
         android:name="com.example.shopma.fragments.HeaderFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- Bandeau de titre -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +20,6 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <!-- Barre de Recherche -->
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchViewProduct"
         android:layout_width="match_parent"
@@ -31,9 +28,8 @@
         android:background="@android:color/white"
         android:elevation="2dp"
         android:iconifiedByDefault="false"
-        android:queryHint="Rechercher un produit par nom..." />
+        android:queryHint="Rechercher un produit par nom" />
 
-    <!-- Liste globale des produits -->
     <ListView
         android:id="@+id/lvProducts"
         android:layout_width="match_parent"
