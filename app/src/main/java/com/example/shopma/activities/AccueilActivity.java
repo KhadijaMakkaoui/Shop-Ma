@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.shopma.R;
 
 public class AccueilActivity extends AppCompatActivity {
@@ -19,21 +20,19 @@ public class AccueilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_accueil);
 
         tvWelcome = findViewById(R.id.tvWelcome);
+        SharedPreferences pref = getSharedPreferences("UserSession", MODE_PRIVATE);
+        String nomUtilisateur = pref.getString("USER_NAME", "Khadija");
+        tvWelcome.setText("Bonjour, " + nomUtilisateur);
+
         btnAll = findViewById(R.id.btnAll);
         btnElec = findViewById(R.id.btnElec);
         btnJewel = findViewById(R.id.btnJewel);
         btnMen = findViewById(R.id.btnMen);
         btnWomen = findViewById(R.id.btnWomen);
         btnMaps = findViewById(R.id.btnMaps);
-        TextView tvWelcome = findViewById(R.id.tvWelcome);
-
-        SharedPreferences pref = getSharedPreferences("UserSession", MODE_PRIVATE);
-        String nomUtilisateur = pref.getString("USER_NAME", "Khadija");
-
-        tvWelcome.setText("Bonjour, " + nomUtilisateur);
 
         btnAll.setOnClickListener(v -> {
-            Intent intent = new Intent(AccueilActivity.this, RechercheActivity.class);
+            Intent intent = new Intent(AccueilActivity.this, CatalogueActivity.class);
             startActivity(intent);
         });
 

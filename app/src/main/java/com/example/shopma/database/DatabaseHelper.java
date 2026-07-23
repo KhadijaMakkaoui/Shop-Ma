@@ -58,4 +58,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getCommandes() {
         return this.getReadableDatabase().rawQuery("SELECT * FROM commandes ORDER BY _id DESC", null);
     }
+
+    public int getQuantiteTotalePanier() {
+        int total = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT SUM(quantity) FROM panier";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                total = cursor.getInt(0);
+            }
+            cursor.close();
+        }
+
+        return total;
+    }
 }

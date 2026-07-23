@@ -1,52 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:background="@color/primaryColor"
+    android:layout_height="56dp"
+    android:background="@color/accentColor"
     android:padding="12dp">
 
     <TextView
-        android:id="@+id/headerTitle"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:text="ShopMa"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true" />
+        android:textStyle="bold" />
 
+    <!-- Conteneur d'icônes aligné à droite -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+        android:gravity="center"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/btnHeaderMaps"
+        <!-- 1. PANIER AVEC BADGE -->
+        <FrameLayout
+            android:id="@+id/btnPanier"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:contentDescription="Points Retrait"
-            android:src="@drawable/outline_location_on_24"
-            android:tint="@color/cardview_light_background"/>
+            android:clickable="true"
+            android:focusable="true">
 
-        <ImageView
-            android:id="@+id/btnHeaderCart"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/outline_add_shopping_cart_24"
-            android:contentDescription="Panier"
-            android:tint="@color/cardview_light_background"/>
+            <!-- Icône du Panier -->
+            <ImageView
+                android:layout_width="42dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_local_grocery_store_24"
+                android:tint="@color/cardview_light_background" />
 
+            <!-- Badge (Nombre d'articles) -->
+            <TextView
+                android:id="@+id/tvCartBadge"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="top|end"
+                android:background="@drawable/baseline_circle_24"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <!-- 2. PROFIL -->
         <ImageView
-            android:id="@+id/btnHeaderProfile"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:id="@+id/btnProfil"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:src="@drawable/men"
-            android:contentDescription="Profil"
             android:tint="@color/cardview_light_background"/>
+
     </LinearLayout>
 </RelativeLayout>
