@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -19,13 +20,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCFJvPFgBbXruve0cJwipWqgLTMDfl2z9o" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY_LEGACY"
+            android:value="AIzaSyCFJvPFgBbXruve0cJwipWqgLTMDfl2z9o" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY_LEGACY_LOCAL"
+            android:value="AIzaSyCFJvPFgBbXruve0cJwipWqgLTMDfl2z9o" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY_LOCAL"
+            android:value="AIzaSyCFJvPFgBbXruve0cJwipWqgLTMDfl2z9o" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY_LOCAL_LEGACY"
+            android:value="AIzaSyCFJvPFgBbXruve0cJwipWqgLTMDfl2z9o" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY_LOCAL_LEGACY_LEGACY"
+            android:value="AIzaSyCFJvPFgBbXruve0cJwipWqgLTMDfl2z9o" />
+
+
         <activity
             android:name=".activities.CommandesActivity"
             android:exported="false" />
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="VOTRE_CLE_API_GOOGLE_MAPS" />
+
 
         <activity
             android:name=".activities.MapsActivity"
