@@ -138,7 +138,8 @@ public class ProfilActivity extends AppCompatActivity {
 
     private void deconnecterUtilisateur() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("is_logged_in", false);
+        editor.putBoolean("remember", false);
+        editor.clear();
         editor.apply();
 
         Toast.makeText(this, "Déconnexion réussie", Toast.LENGTH_SHORT).show();
